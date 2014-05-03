@@ -66,6 +66,7 @@
       <DependentUpon>DataFilter.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Indexing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="searcherModule.cs" />
   </ItemGroup>

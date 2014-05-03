@@ -6,3 +6,4 @@ C:\Users\Shashank\Documents\Visual Studio 2012\Projects\SmartCollab\SmartCollab\
 C:\Users\Shashank\Documents\Visual Studio 2012\Projects\SmartCollab\SmartCollab\bin\Lucene.Net.dll
 C:\Users\Shashank\Documents\Visual Studio 2012\Projects\SmartCollab\SmartCollab\bin\Lucene.Net.Contrib.Analyzers.pdb
 C:\Users\Shashank\Documents\Visual Studio 2012\Projects\SmartCollab\SmartCollab\bin\Lucene.Net.pdb
+C:\Users\Shashank\documents\visual studio 2012\Projects\SmartCollab\SmartCollab\obj\Debug\SmartCollab.csprojResolveAssemblyReference.cache
