@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="searchService">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="keyword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchServiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchServiceResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchRequirement">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="keyword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="searchRequirementResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchRequirementResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="republishService">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="service_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="tenant_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="republishServiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="republishServiceResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="unpublish_service">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="service_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="tenant_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="unpublish_serviceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="unpublish_serviceResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="unpublishReq">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tenant_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="req_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="unpublishReqResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="unpublishReqResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getRequirementsOwner">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="req_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getRequirementsOwnerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getRequirementsOwnerResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="publishMyService">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tenant_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="serviceURL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="publishMyServiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="publishMyServiceResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getOwnedServiceList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tenant_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getOwnedServiceListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getOwnedServiceListResult" type="tns:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="bindService">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="service_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="tenant_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="bindServiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="bindServiceResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="bindRequirment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="req_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="tenant_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="bindRequirmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="bindRequirmentResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getServiceSubscriber">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="service_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getServiceSubscriberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getServiceSubscriberResult" type="tns:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getRequirementSubscriber">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="req_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getRequirementSubscriberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getRequirementSubscriberResult" type="tns:ArrayOfAnyType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="publishMyRequirements">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="tenant_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="publishMyRequirementsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="publishMyRequirementsResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="searchServiceSoapIn">
+    <wsdl:part name="parameters" element="tns:searchService" />
+  </wsdl:message>
+  <wsdl:message name="searchServiceSoapOut">
+    <wsdl:part name="parameters" element="tns:searchServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchRequirementSoapIn">
+    <wsdl:part name="parameters" element="tns:searchRequirement" />
+  </wsdl:message>
+  <wsdl:message name="searchRequirementSoapOut">
+    <wsdl:part name="parameters" element="tns:searchRequirementResponse" />
+  </wsdl:message>
+  <wsdl:message name="republishServiceSoapIn">
+    <wsdl:part name="parameters" element="tns:republishService" />
+  </wsdl:message>
+  <wsdl:message name="republishServiceSoapOut">
+    <wsdl:part name="parameters" element="tns:republishServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="unpublish_serviceSoapIn">
+    <wsdl:part name="parameters" element="tns:unpublish_service" />
+  </wsdl:message>
+  <wsdl:message name="unpublish_serviceSoapOut">
+    <wsdl:part name="parameters" element="tns:unpublish_serviceResponse" />
+  </wsdl:message>
+  <wsdl:message name="unpublishReqSoapIn">
+    <wsdl:part name="parameters" element="tns:unpublishReq" />
+  </wsdl:message>
+  <wsdl:message name="unpublishReqSoapOut">
+    <wsdl:part name="parameters" element="tns:unpublishReqResponse" />
+  </wsdl:message>
+  <wsdl:message name="getRequirementsOwnerSoapIn">
+    <wsdl:part name="parameters" element="tns:getRequirementsOwner" />
+  </wsdl:message>
+  <wsdl:message name="getRequirementsOwnerSoapOut">
+    <wsdl:part name="parameters" element="tns:getRequirementsOwnerResponse" />
+  </wsdl:message>
+  <wsdl:message name="publishMyServiceSoapIn">
+    <wsdl:part name="parameters" element="tns:publishMyService" />
+  </wsdl:message>
+  <wsdl:message name="publishMyServiceSoapOut">
+    <wsdl:part name="parameters" element="tns:publishMyServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="getOwnedServiceListSoapIn">
+    <wsdl:part name="parameters" element="tns:getOwnedServiceList" />
+  </wsdl:message>
+  <wsdl:message name="getOwnedServiceListSoapOut">
+    <wsdl:part name="parameters" element="tns:getOwnedServiceListResponse" />
+  </wsdl:message>
+  <wsdl:message name="bindServiceSoapIn">
+    <wsdl:part name="parameters" element="tns:bindService" />
+  </wsdl:message>
+  <wsdl:message name="bindServiceSoapOut">
+    <wsdl:part name="parameters" element="tns:bindServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="bindRequirmentSoapIn">
+    <wsdl:part name="parameters" element="tns:bindRequirment" />
+  </wsdl:message>
+  <wsdl:message name="bindRequirmentSoapOut">
+    <wsdl:part name="parameters" element="tns:bindRequirmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="getServiceSubscriberSoapIn">
+    <wsdl:part name="parameters" element="tns:getServiceSubscriber" />
+  </wsdl:message>
+  <wsdl:message name="getServiceSubscriberSoapOut">
+    <wsdl:part name="parameters" element="tns:getServiceSubscriberResponse" />
+  </wsdl:message>
+  <wsdl:message name="getRequirementSubscriberSoapIn">
+    <wsdl:part name="parameters" element="tns:getRequirementSubscriber" />
+  </wsdl:message>
+  <wsdl:message name="getRequirementSubscriberSoapOut">
+    <wsdl:part name="parameters" element="tns:getRequirementSubscriberResponse" />
+  </wsdl:message>
+  <wsdl:message name="publishMyRequirementsSoapIn">
+    <wsdl:part name="parameters" element="tns:publishMyRequirements" />
+  </wsdl:message>
+  <wsdl:message name="publishMyRequirementsSoapOut">
+    <wsdl:part name="parameters" element="tns:publishMyRequirementsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DataFilterSoap">
+    <wsdl:operation name="searchService">
+      <wsdl:input message="tns:searchServiceSoapIn" />
+      <wsdl:output message="tns:searchServiceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="searchRequirement">
+      <wsdl:input message="tns:searchRequirementSoapIn" />
+      <wsdl:output message="tns:searchRequirementSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="republishService">
+      <wsdl:input message="tns:republishServiceSoapIn" />
+      <wsdl:output message="tns:republishServiceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="unpublish_service">
+      <wsdl:input message="tns:unpublish_serviceSoapIn" />
+      <wsdl:output message="tns:unpublish_serviceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="unpublishReq">
+      <wsdl:input message="tns:unpublishReqSoapIn" />
+      <wsdl:output message="tns:unpublishReqSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getRequirementsOwner">
+      <wsdl:input message="tns:getRequirementsOwnerSoapIn" />
+      <wsdl:output message="tns:getRequirementsOwnerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="publishMyService">
+      <wsdl:input message="tns:publishMyServiceSoapIn" />
+      <wsdl:output message="tns:publishMyServiceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getOwnedServiceList">
+      <wsdl:input message="tns:getOwnedServiceListSoapIn" />
+      <wsdl:output message="tns:getOwnedServiceListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="bindService">
+      <wsdl:input message="tns:bindServiceSoapIn" />
+      <wsdl:output message="tns:bindServiceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="bindRequirment">
+      <wsdl:input message="tns:bindRequirmentSoapIn" />
+      <wsdl:output message="tns:bindRequirmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getServiceSubscriber">
+      <wsdl:input message="tns:getServiceSubscriberSoapIn" />
+      <wsdl:output message="tns:getServiceSubscriberSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getRequirementSubscriber">
+      <wsdl:input message="tns:getRequirementSubscriberSoapIn" />
+      <wsdl:output message="tns:getRequirementSubscriberSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="publishMyRequirements">
+      <wsdl:input message="tns:publishMyRequirementsSoapIn" />
+      <wsdl:output message="tns:publishMyRequirementsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DataFilterSoap" type="tns:DataFilterSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="searchService">
+      <soap:operation soapAction="http://tempuri.org/searchService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchRequirement">
+      <soap:operation soapAction="http://tempuri.org/searchRequirement" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="republishService">
+      <soap:operation soapAction="http://tempuri.org/republishService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unpublish_service">
+      <soap:operation soapAction="http://tempuri.org/unpublish_service" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unpublishReq">
+      <soap:operation soapAction="http://tempuri.org/unpublishReq" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRequirementsOwner">
+      <soap:operation soapAction="http://tempuri.org/getRequirementsOwner" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="publishMyService">
+      <soap:operation soapAction="http://tempuri.org/publishMyService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOwnedServiceList">
+      <soap:operation soapAction="http://tempuri.org/getOwnedServiceList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bindService">
+      <soap:operation soapAction="http://tempuri.org/bindService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bindRequirment">
+      <soap:operation soapAction="http://tempuri.org/bindRequirment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getServiceSubscriber">
+      <soap:operation soapAction="http://tempuri.org/getServiceSubscriber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRequirementSubscriber">
+      <soap:operation soapAction="http://tempuri.org/getRequirementSubscriber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="publishMyRequirements">
+      <soap:operation soapAction="http://tempuri.org/publishMyRequirements" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DataFilterSoap12" type="tns:DataFilterSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="searchService">
+      <soap12:operation soapAction="http://tempuri.org/searchService" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchRequirement">
+      <soap12:operation soapAction="http://tempuri.org/searchRequirement" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="republishService">
+      <soap12:operation soapAction="http://tempuri.org/republishService" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unpublish_service">
+      <soap12:operation soapAction="http://tempuri.org/unpublish_service" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unpublishReq">
+      <soap12:operation soapAction="http://tempuri.org/unpublishReq" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRequirementsOwner">
+      <soap12:operation soapAction="http://tempuri.org/getRequirementsOwner" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="publishMyService">
+      <soap12:operation soapAction="http://tempuri.org/publishMyService" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOwnedServiceList">
+      <soap12:operation soapAction="http://tempuri.org/getOwnedServiceList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bindService">
+      <soap12:operation soapAction="http://tempuri.org/bindService" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bindRequirment">
+      <soap12:operation soapAction="http://tempuri.org/bindRequirment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getServiceSubscriber">
+      <soap12:operation soapAction="http://tempuri.org/getServiceSubscriber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRequirementSubscriber">
+      <soap12:operation soapAction="http://tempuri.org/getRequirementSubscriber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="publishMyRequirements">
+      <soap12:operation soapAction="http://tempuri.org/publishMyRequirements" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DataFilter">
+    <wsdl:port name="DataFilterSoap" binding="tns:DataFilterSoap">
+      <soap:address location="http://localhost:7572/DataFilter.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DataFilterSoap12" binding="tns:DataFilterSoap12">
+      <soap12:address location="http://localhost:7572/DataFilter.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

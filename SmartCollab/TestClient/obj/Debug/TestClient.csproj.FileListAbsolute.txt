@@ -6,4 +6,3 @@ c:\users\shashank\documents\visual studio 2012\Projects\SmartCollab\TestClient\o
 c:\users\shashank\documents\visual studio 2012\Projects\SmartCollab\TestClient\obj\Debug\TestClient.csproj.GenerateResource.Cache
 c:\users\shashank\documents\visual studio 2012\Projects\SmartCollab\TestClient\obj\Debug\TestClient.exe
 c:\users\shashank\documents\visual studio 2012\Projects\SmartCollab\TestClient\obj\Debug\TestClient.pdb
-C:\Users\Shashank\documents\visual studio 2012\Projects\SmartCollab\TestClient\obj\Debug\TestClient.csprojResolveAssemblyReference.cache

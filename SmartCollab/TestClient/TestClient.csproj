@@ -64,6 +64,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\SmartCollabRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -98,12 +103,17 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Service References\FilterEngine\DataFilter.wsdl" />
+    <None Include="Service References\SmartCollabRef\DataFilter.wsdl" />
+    <None Include="Service References\SmartCollabRef\TestClient.SmartCollabRef.ArrayOfAnyType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\FilterEngine\" />
+    <WCFMetadataStorage Include="Service References\SmartCollabRef\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\FilterEngine\DataFilter.disco" />
@@ -116,6 +126,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\FilterEngine\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SmartCollabRef\DataFilter.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SmartCollabRef\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SmartCollabRef\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SmartCollabRef\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
