@@ -118,12 +118,31 @@ namespace SmartCollab
 
         }
 
-
         [WebMethod]
-        public int unpublish_service(int service_id)
+        public int republishService(int service_id, int tenant_id)
         {
             dataConn con = new dataConn();
+            if (con.getServiceOwnerId(service_id) == tenant_id)
+            {
+                return con.republishService(service_id);
+            }
+            else
+            {
+                return 400;
+            }
+        }
+
+        [WebMethod]
+        public int unpublish_service(int service_id, int tenant_id)
+        {
+            dataConn con = new dataConn();
+            if (con.getServiceOwnerId(service_id)==tenant_id)
+            {
             return con.unpublishService(service_id);
+            }
+            else{
+            return 400;
+            }
         }
         
         [WebMethod]
@@ -139,6 +158,13 @@ namespace SmartCollab
             {
                 return 400;
             }
+        }
+
+        [WebMethod]
+        public int getRequirementsOwner(int req_id)
+        {
+            dataConn con = new dataConn();
+            return con.getReqOwnerId(req_id);
         }
 
         [WebMethod]

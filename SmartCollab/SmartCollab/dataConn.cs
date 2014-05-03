@@ -94,7 +94,7 @@ namespace SmartCollab
             conn.ConnectionString = "Data Source=SHASHANK-PC;Initial Catalog=master;Integrated Security=True";
             conn.Open();
             SqlCommand query = new SqlCommand();
-            query.CommandText = "delete from requirement where req_id = " + req_id.ToString() + ";";
+            query.CommandText = "delete from requirements where req_id = " + req_id.ToString() + ";";
             query.Connection = conn;
             try
             {
@@ -118,11 +118,11 @@ namespace SmartCollab
             conn.ConnectionString = "Data Source=SHASHANK-PC;Initial Catalog=master;Integrated Security=True";
             conn.Open();
             SqlCommand query = new SqlCommand();
-            query.CommandText = "select publisher_tenant_id from requirement where req_id = " + req_id.ToString() + ";";
+            query.CommandText = "select publisher_tenant_id from requirements where req_id = " + req_id.ToString() + ";";
             query.Connection = conn;
             try
             {
-                return (int)query.ExecuteScalar();
+                return int.Parse(query.ExecuteScalar().ToString());
                
             }
             catch
@@ -190,6 +190,52 @@ namespace SmartCollab
             }
 
         }
+
+        public int getServiceOwnerId(int service_id)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = "Data Source=SHASHANK-PC;Initial Catalog=master;Integrated Security=True";
+            conn.Open();
+            SqlCommand query = new SqlCommand();
+            query.CommandText = "select tenant_id from service_dir where service_id="+service_id.ToString()+";";
+            query.Connection = conn;
+            try
+            {
+                return int.Parse(query.ExecuteScalar().ToString());  
+            }
+            catch
+            {
+                return 400;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public int republishService(int service_id)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = "Data Source=SHASHANK-PC;Initial Catalog=master;Integrated Security=True";
+            conn.Open();
+            SqlCommand query = new SqlCommand();
+            query.CommandText = "update service_dir set published=1 where service_id= " + service_id.ToString() + ";";
+            query.Connection = conn;
+            try
+            {
+                query.ExecuteNonQuery();
+                return 200;
+            }
+            catch
+            {
+                return 400;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
 
         public int bindService(int service_id, int tenant_id)
         {
@@ -291,6 +337,7 @@ namespace SmartCollab
             }
             catch
             {
+
                 al.Add(int.Parse("400"));
                 return al;
             }
